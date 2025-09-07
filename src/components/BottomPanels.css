@@ -1,0 +1,141 @@
+.bottom-panels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 8px 8px 12px;
+}
+
+.panel {
+  background: #1c2533;
+  border: 1px solid #263244;
+  border-radius: 8px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  background: #263244;
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #263244;
+  border-radius: 8px 8px 0 0;
+}
+
+.panel-body {
+  padding: 10px;
+  min-height: 0;
+  overflow: auto;
+  flex: 1;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.info-label {
+  color: #aaa;
+}
+
+.info-value {
+  color: #fff;
+  font-weight: 600;
+}
+
+.status-normal {
+  color: #27ae60 !important;
+}
+
+.event-list {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.event-item {
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  background: #141a21;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 3px solid #667eea;
+}
+
+.event-item:hover {
+  background: #1a2332;
+  transform: translateX(2px);
+}
+
+.event-time {
+  font-weight: 600;
+  color: #667eea;
+  font-size: 11px;
+}
+
+.event-type {
+  font-size: 10px;
+  color: #ccc;
+  margin-top: 2px;
+}
+
+.weather-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 4px 6px;
+  background: #141a21;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.weather-place {
+  font-weight: 600;
+  color: #fff;
+}
+
+.weather-temp {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.weather-detail {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #aaa;
+  text-align: center;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .bottom-panels {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 4px;
+  }
+  
+  .panel-body {
+    padding: 8px;
+  }
+  
+  .info-item {
+    font-size: 11px;
+  }
+  
+  .event-item {
+    padding: 4px 6px;
+  }
+  
+  .event-time {
+    font-size: 10px;
+  }
+  
+  .event-type {
+    font-size: 9px;
+  }
+}
+

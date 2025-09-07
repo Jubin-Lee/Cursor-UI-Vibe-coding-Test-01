@@ -1,0 +1,80 @@
+.header {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  padding: 0 16px; 
+  background: #1f2a38; 
+  border-bottom: 1px solid #263244;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #667eea;
+  font-size: 20px;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.clock {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Courier New', monospace;
+  color: white;
+}
+
+.refresh-btn {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.refresh-btn:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.refresh-btn:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 10px;
+  }
+  
+  .header-title {
+    font-size: 18px;
+  }
+  
+  .clock {
+    font-size: 14px;
+  }
+}
+

@@ -1,0 +1,76 @@
+.linear-diagram {
+  background: #141a21;
+  border-top: 1px solid #263244;
+  border-bottom: 1px solid #263244;
+}
+
+.linear-inner {
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 16px;
+}
+
+.linear-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.linear-bar {
+  display: flex;
+  height: 40px;
+  gap: 4px;
+  align-items: center;
+}
+
+.linear-segment {
+  display: inline-block;
+  height: 40px;
+  width: 160px;
+  border-radius: 6px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #21c36b;
+}
+
+.linear-segment:hover {
+  transform: scaleY(1.1);
+  z-index: 10;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
+}
+
+.linear-segment-label {
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  font-size: 12px;
+  color: #001;
+  font-weight: 600;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 144px;
+}
+
+/* 속도별 색상 클래스 */
+.speed-red { background-color: #e74c3c !important; }
+.speed-orange { background-color: #f39c12 !important; }
+.speed-yellow { background-color: #f1c40f !important; }
+.speed-green { background-color: #27ae60 !important; }
+.speed-teal { background-color: #1abc9c !important; }
+
+@media (max-width: 768px) {
+  .linear-segment {
+    width: 120px;
+  }
+  
+  .linear-segment-label {
+    font-size: 10px;
+    max-width: 104px;
+  }
+}
+

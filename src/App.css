@@ -1,0 +1,298 @@
+/* === 1920x1080 고정 프레임 === */
+html, body { 
+  height: 100%; 
+  margin: 0; 
+  background: #0f1419; 
+  color: #fff; 
+  overflow: hidden; /* 문서 전체 스크롤 금지 */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  width: 1920px; 
+  height: 1080px;
+  margin: 0 auto; /* 필요 시 가운데 정렬 */
+  display: grid;
+  grid-template-rows: 64px 540px 90px 1fr; /* 헤더 / 지도 / 직선도 / 하단패널 */
+  grid-template-columns: 100%;
+  gap: 0;
+  background: #0f1419;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1920px) {
+  .app {
+    width: 100vw;
+    height: 100vh;
+    grid-template-rows: 64px 1fr 90px 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app {
+    grid-template-rows: 64px 1fr 90px auto;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 속도 범례 스타일 */
+.speed-legend {
+  position: absolute;
+  top: 80px; /* 헤더 높이(64px) + 여백(16px) */
+  left: 16px;
+  background: rgba(15, 23, 42, 0.9); /* slate-900/90 */
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  border: 1px solid rgba(51, 65, 85, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 1000;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.legend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.legend-header:hover {
+  background-color: rgba(51, 65, 85, 0.3);
+}
+
+.legend-title {
+  color: #f1f5f9;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.legend-arrow {
+  color: #94a3b8;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.legend-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.legend-content {
+  padding: 0 16px 16px;
+  max-height: 200px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.legend-content.collapsed {
+  max-height: 0;
+  padding: 0 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.legend-item:last-child {
+  margin-bottom: 0;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  margin-right: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.legend-text {
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* 경로 섹션 */
+.route-section {
+  margin-bottom: 20px; /* 상/하행 사이 공간 확보 */
+}
+
+.route-section.upbound {
+  margin-top: 10px; /* 상행을 하단으로 이동 */
+}
+
+.route-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+/* 방향 표시 */
+.direction-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: bold;
+  color: #5b74ff;
+  z-index: 4;
+}
+
+.direction-left {
+  left: 8px;
+}
+
+.direction-right {
+  right: 8px;
+}
+
+/* IC 명칭 표기 */
+.ic-labels {
+  position: absolute;
+  top: 40%; /* IC 명칭을 상단으로 이동 */
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  height: 20px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ic-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #94a3b8;
+  background: rgba(28, 35, 48, 0.8);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.route-container {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.route-row {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+}
+
+/* 경로 스타일 */
+.route-main, .route-branch { 
+  display: flex; 
+  align-items: center; 
+  height: 100%; 
+  overflow: hidden; 
+}
+
+.route-main {
+  flex: 3; /* 본선을 더 넓게 확장 */
+  margin-right: 0; /* 지선과의 간격 제거 */
+}
+
+.route-branch {
+  flex: 0.5; /* 지선을 더 넓게 */
+  margin-left: 180px; /* 소흘 칩 오른쪽으로 더 이동 */
+  margin-right: 10px; /* 양주 칩과의 마진 */
+}
+
+.route-main .seg, .route-branch .seg { 
+  height: 100%; 
+  margin: 0; 
+  border-radius: 0; 
+  position: relative; 
+}
+
+.route-main .seg + .seg::before,
+.route-branch .seg + .seg::before {
+  content: ""; 
+  position: absolute; 
+  left: -1px; 
+  top: 0; 
+  bottom: 0; 
+  width: 2px; 
+  background: #0f1722; 
+  opacity: 0.6;
+}
+
+/* 경로의 양끝만 라운드 */
+.route-main .seg:first-child { 
+  border-top-left-radius: 12px; 
+  border-bottom-left-radius: 12px; 
+}
+
+.route-main .seg:last-child { 
+  border-top-right-radius: 12px; 
+  border-bottom-right-radius: 12px; 
+}
+
+.route-branch .seg:first-child { 
+  border-top-left-radius: 12px; 
+  border-bottom-left-radius: 12px; 
+}
+
+.route-branch .seg:last-child { 
+  border-top-right-radius: 12px; 
+  border-bottom-right-radius: 12px; 
+}
+
+/* 칩 채널과 칩 */
+.chip-lane { 
+  position: relative; 
+  height: 38px; 
+}
+
+.chip {
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%);
+  background: #5b74ff; 
+  color: #fff; 
+  border-radius: 18px; 
+  padding: 6px 12px; 
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35); 
+  white-space: nowrap; 
+  z-index: 3;
+}
+
+/* 양 끝 칩(구리/양주) */
+.edge-chip {
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  z-index: 3;
+  background: #5b74ff; 
+  color: #fff; 
+  border-radius: 18px; 
+  padding: 8px 14px; 
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.edge-chip.chip-left { 
+  left: 12px; 
+}
+
+.edge-chip.chip-right { 
+  right: 12px; 
+}
+
