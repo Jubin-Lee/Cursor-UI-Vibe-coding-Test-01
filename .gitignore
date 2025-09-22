@@ -1,0 +1,32 @@
+# npm/ yarn cache
+.npm/
+.yarn-cache/
+.pnpm-store/
+
+# lock / debug
+*.log
+*.lock
+
+# os/ IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+#Optional : test / coverage
+coverage/
+
+# Node modules
+node_modules/
+.cache/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+
+

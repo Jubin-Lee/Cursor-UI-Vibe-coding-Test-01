@@ -1,0 +1,78 @@
+/* Incident Modal */
+.incident-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.incident-modal-content {
+  background: #1c2533;
+  padding: 20px;
+  border-radius: 8px;
+  width: 480px;
+  max-width: 90vw;
+  color: #fff;
+  position: relative;
+  border: 1px solid #263244;
+}
+
+.incident-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.incident-modal-close:hover {
+  color: #fff;
+}
+
+.incident-modal-title {
+  margin: 0 0 16px 0;
+  color: #e74c3c;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.incident-modal-body p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.incident-modal-body strong {
+  color: #87ceeb;
+}
+
+.incident-video-container {
+  margin-top: 16px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.incident-video-container video {
+  background: #000;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .incident-modal-content {
+    width: 95vw;
+    margin: 10px;
+    padding: 15px;
+  }
+  
+  .incident-video-container video {
+    height: 180px;
+  }
+}
+

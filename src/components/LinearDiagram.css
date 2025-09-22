@@ -1,0 +1,208 @@
+/* 직선도 영역 (원래 HTML과 동일) */
+.linear-diagram {
+  position: relative;
+  background: #1c2330; 
+  border-top: 1px solid #263244; 
+  border-bottom: 1px solid #263244; 
+  height: 160px; /* 직선도 영역 높이 더 늘림 */
+  padding: 10px 92px;
+}
+
+/* 경로 섹션 */
+.route-section {
+  margin-bottom: 20px; /* 상/하행 사이 공간 확보 */
+}
+
+.route-section.upbound {
+  margin-top: 40px; /* 상행을 더 아래로 이동 - 간격 확대 */
+}
+
+.route-container {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  position: relative;
+  padding: 0 30px; /* 방향 표시자를 위한 좌우 패딩 추가 */
+}
+
+.route-row {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+}
+
+/* 방향 표시 */
+.direction-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: bold;
+  color: #5b74ff;
+  z-index: 4;
+}
+
+.direction-left {
+  left: -20px; /* 더 왼쪽으로 이동하여 직선도와 중첩 방지 */
+}
+
+.direction-right {
+  right: -20px; /* 더 오른쪽으로 이동하여 직선도와 중첩 방지 */
+}
+
+/* IC 명칭 표기 (원래 HTML과 동일) */
+.ic-labels {
+  position: absolute;
+  top: 50%; /* IC 명칭을 상하행 사이 중앙으로 이동 */
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  height: 20px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ic-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #94a3b8;
+  background: rgba(28, 35, 48, 0.8);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  position: absolute;
+}
+
+/* 경로 스타일 */
+.route-main, .route-branch { 
+  display: flex; 
+  align-items: center; 
+  height: 100%; 
+  overflow: hidden; 
+}
+
+.route-main {
+  flex: 3; /* 본선을 더 넓게 확장 */
+  margin-right: 0; /* 지선과의 간격 제거 */
+}
+
+.route-branch {
+  flex: 0.5; /* 지선을 더 넓게 */
+  margin-left: 180px; /* 소흘 칩 오른쪽으로 더 이동 */
+  margin-right: 10px; /* 양주 칩과의 마진 */
+}
+
+.route-main .seg, .route-branch .seg { 
+  height: 100%; 
+  margin: 0; 
+  border-radius: 0; 
+  position: relative; 
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.route-main .seg + .seg::before,
+.route-branch .seg + .seg::before {
+  content: ""; 
+  position: absolute; 
+  left: -1px; 
+  top: 0; 
+  bottom: 0; 
+  width: 2px; 
+  background: #0f1722; 
+  opacity: 0.6;
+}
+
+/* 경로의 양끝만 라운드 */
+.route-main .seg:first-child { 
+  border-top-left-radius: 12px; 
+  border-bottom-left-radius: 12px; 
+}
+
+.route-main .seg:last-child { 
+  border-top-right-radius: 12px; 
+  border-bottom-right-radius: 12px; 
+}
+
+.route-branch .seg:first-child { 
+  border-top-left-radius: 12px; 
+  border-bottom-left-radius: 12px; 
+}
+
+.route-branch .seg:last-child { 
+  border-top-right-radius: 12px; 
+  border-bottom-right-radius: 12px; 
+}
+
+.seg:hover {
+  transform: scaleY(1.1);
+  z-index: 10;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
+}
+
+/* 선택된 직선도 블록 스타일 */
+.seg.selected {
+  box-shadow: 0 0 0 3px #00ff00 !important;
+  border: 2px solid #00ff00 !important;
+}
+
+/* 칩 채널과 칩 (원래 HTML과 동일) */
+.chip-lane { 
+  position: absolute; 
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 38px; 
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.chip {
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%);
+  background: #5b74ff; 
+  color: #fff; 
+  border-radius: 18px; 
+  padding: 6px 12px; 
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35); 
+  white-space: nowrap; 
+  z-index: 3;
+}
+
+/* 양 끝 칩(구리/양주) */
+.edge-chip {
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  z-index: 3;
+  background: #5b74ff; 
+  color: #fff; 
+  border-radius: 18px; 
+  padding: 8px 14px; 
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.edge-chip.chip-left { 
+  left: 12px; 
+}
+
+.edge-chip.chip-right { 
+  right: 12px; 
+}
+
+@media (max-width: 768px) {
+  .linear-diagram {
+    height: 120px;
+    padding: 10px 16px;
+  }
+  
+  .ic-label {
+    font-size: 8px;
+  }
+}

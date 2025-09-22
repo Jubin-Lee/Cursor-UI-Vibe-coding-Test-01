@@ -1,0 +1,180 @@
+.bottom-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* 4개 패널로 조정 (소통정보, 돌발상황, VMS/LCS, 날씨) */
+  gap: 8px;
+  padding: 8px 8px 12px;
+}
+
+.panel {
+  background: #1c2533;
+  border: 1px solid #263244;
+  border-radius: 8px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  background: #263244;
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #263244;
+  border-radius: 8px 8px 0 0;
+}
+
+.panel-body {
+  padding: 8px;
+  min-height: 0;
+  overflow: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 12px;
+  padding: 2px 0;
+}
+
+.info-label {
+  color: #aaa;
+}
+
+.info-value {
+  color: #fff;
+  font-weight: 600;
+}
+
+.status-normal {
+  color: #27ae60 !important;
+}
+
+.event-list {
+  max-height: 200px; /* 높이 증가로 더 많은 항목 표시 */
+  overflow-y: auto;
+  overflow-x: hidden; /* 가로 스크롤 제거 */
+  scrollbar-width: thin; /* Firefox에서 얇은 스크롤바 */
+  scrollbar-color: #667eea transparent; /* Firefox 스크롤바 색상 */
+  flex: 1; /* 남은 공간 모두 활용 */
+}
+
+/* Webkit 기반 브라우저 (Chrome, Safari, Edge) 스크롤바 스타일 */
+.event-list::-webkit-scrollbar {
+  width: 6px; /* 세로 스크롤바 너비 */
+}
+
+.event-list::-webkit-scrollbar-track {
+  background: transparent; /* 스크롤바 트랙 배경 */
+}
+
+.event-list::-webkit-scrollbar-thumb {
+  background: #667eea; /* 스크롤바 색상 */
+  border-radius: 3px;
+}
+
+.event-list::-webkit-scrollbar-thumb:hover {
+  background: #5a67d8; /* 호버 시 스크롤바 색상 */
+}
+
+.event-item {
+  padding: 5px 6px;
+  margin-bottom: 3px;
+  background: #141a21;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 3px solid #667eea;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  overflow: hidden; /* 넘치는 텍스트 숨김 */
+  text-overflow: ellipsis; /* 넘치는 텍스트에 ... 표시 */
+}
+
+.event-item:hover {
+  background: #1a2332;
+  transform: translateX(2px);
+}
+
+.event-time {
+  font-weight: 600;
+  color: #667eea;
+  font-size: 11px;
+}
+
+.event-type {
+  font-size: 10px;
+  color: #ccc;
+  margin-top: 2px;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  overflow: hidden; /* 넘치는 텍스트 숨김 */
+  text-overflow: ellipsis; /* 넘치는 텍스트에 ... 표시 */
+}
+
+.weather-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding: 3px 6px;
+  background: #141a21;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.weather-place {
+  font-weight: 600;
+  color: #fff;
+}
+
+.weather-temp {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.weather-detail {
+  margin-top: 6px;
+  font-size: 10px;
+  color: #aaa;
+  text-align: center;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .bottom-panels {
+    grid-template-columns: repeat(2, 1fr); /* 모바일에서는 2x2 그리드 */
+    gap: 4px;
+    padding: 4px;
+  }
+  
+  .panel-body {
+    padding: 8px;
+  }
+  
+  .info-item {
+    font-size: 11px;
+  }
+  
+  .event-item {
+    padding: 4px 6px;
+  }
+  
+  .event-time {
+    font-size: 10px;
+  }
+  
+  .event-type {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bottom-panels {
+    grid-template-columns: 1fr; /* 매우 작은 화면에서는 세로 배치 */
+  }
+}
+
+
+
