@@ -338,12 +338,12 @@ const BRANCH = [
         container: mapContainer.current,
         style: {
           version: 8,
-          glyphs: 'https://fonts.openmaptiles.org/{fontstack}/{range}.pbf',
+          glyphs: 'https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=H6Lx59Ru6ZrCUGzhseII',
           sources: {
             'raster-tiles': {
               type: 'raster',
               tiles: [
-                'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                'https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=H6Lx59Ru6ZrCUGzhseII'
               ],
               tileSize: 256
             }
@@ -374,6 +374,17 @@ const BRANCH = [
         showCompass: false, // 회전 버튼 제거
         showZoom: true
       }));
+
+      // 저작권 표기 (우측 하단)
+      if (window.maplibregl && window.maplibregl.AttributionControl) {
+        map.current.addControl(
+          new window.maplibregl.AttributionControl({
+            compact: false,
+            customAttribution: '© MapTiler © OpenStreetMap contributors'
+          }),
+          'bottom-right'
+        );
+      }
 
       // 팝업 생성
       popup.current = new window.maplibregl.Popup({
