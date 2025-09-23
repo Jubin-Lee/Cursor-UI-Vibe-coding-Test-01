@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Cursor-UI-Vibe-coding-Test-01/static/css/main.e3123079.css",
-    "main.js": "/Cursor-UI-Vibe-coding-Test-01/static/js/main.fbd6fe11.js",
+    "main.js": "/Cursor-UI-Vibe-coding-Test-01/static/js/main.deb78229.js",
     "static/js/333.07817a74.chunk.js": "/Cursor-UI-Vibe-coding-Test-01/static/js/333.07817a74.chunk.js",
     "index.html": "/Cursor-UI-Vibe-coding-Test-01/index.html",
     "main.e3123079.css.map": "/Cursor-UI-Vibe-coding-Test-01/static/css/main.e3123079.css.map",
-    "main.fbd6fe11.js.map": "/Cursor-UI-Vibe-coding-Test-01/static/js/main.fbd6fe11.js.map",
+    "main.deb78229.js.map": "/Cursor-UI-Vibe-coding-Test-01/static/js/main.deb78229.js.map",
     "333.07817a74.chunk.js.map": "/Cursor-UI-Vibe-coding-Test-01/static/js/333.07817a74.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e3123079.css",
-    "static/js/main.fbd6fe11.js"
+    "static/js/main.deb78229.js"
   ]
 }
