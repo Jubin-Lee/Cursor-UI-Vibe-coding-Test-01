@@ -402,7 +402,7 @@ const BRANCH = [
     try {
       console.log('SHP 파일 로딩 시작...');
       
-      const response = await fetch('/t_tgpe_vds_pnt_link_01r_geom.zip');
+      const response = await fetch('./t_tgpe_vds_pnt_link_01r_geom.zip');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
