@@ -338,12 +338,11 @@ const BRANCH = [
         container: mapContainer.current,
         style: {
           version: 8,
-          glyphs: 'https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
           sources: {
             'raster-tiles': {
               type: 'raster',
               tiles: [
-                'https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=get_your_own_OpIi9ZULNHzrESv6T2vL'
+                'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
               ],
               tileSize: 256
             }
