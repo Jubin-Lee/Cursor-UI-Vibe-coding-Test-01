@@ -2,6 +2,7 @@
   "name": "traffic-dashboard",
   "version": "1.0.0",
   "description": "교통 상황판 - React + MapLibre GL JS",
+  "homepage": "https://jubin-lee.github.io/Cursor-UI-Vibe-coding-Test-01",
   "main": "index.js",
   "scripts": {
     "start": "set PORT=8000 && react-scripts start",
