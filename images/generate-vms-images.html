@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VMS Images Generator</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="100" style="border: 1px solid #ccc;"></canvas>
+    <br><br>
+    <button onclick="generateSeatbelt()">안전벨트 이미지 생성</button>
+    <button onclick="generatePhone()">휴대폰 이미지 생성</button>
+    <button onclick="generateDrowsy()">졸음운전 이미지 생성</button>
+    <button onclick="generateInfo()">이용안내 이미지 생성</button>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function downloadImage(filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function generateSeatbelt() {
+            // 검은 배경
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, 400, 100);
+
+            // 안전벨트 아이콘 (왼쪽)
+            ctx.fillStyle = '#FFD700';
+            ctx.beginPath();
+            ctx.arc(50, 30, 15, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // 사람 몸체
+            ctx.fillRect(40, 45, 20, 25);
+            ctx.fillRect(35, 70, 8, 15);
+            ctx.fillRect(57, 70, 8, 15);
+            ctx.fillRect(45, 85, 10, 10);
+
+            // 안전벨트
+            ctx.strokeStyle = '#4CAF50';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(30, 50);
+            ctx.lineTo(70, 55);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(30, 55);
+            ctx.lineTo(70, 60);
+            ctx.stroke();
+
+            // 의자
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(25, 75, 30, 5);
+
+            // 중앙 텍스트
+            ctx.fillStyle = '#4CAF50';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('안전벨트를 착용합시다', 200, 50);
+
+            // 자동차 아이콘 (오른쪽)
+            ctx.fillStyle = '#FF69B4';
+            ctx.fillRect(320, 25, 40, 20);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(330, 30, 8, 6);
+            ctx.fillRect(342, 30, 8, 6);
+            ctx.fillStyle = '#808080';
+            ctx.beginPath();
+            ctx.arc(335, 50, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(355, 50, 6, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // 하트
+            ctx.fillStyle = '#FF0000';
+            ctx.beginPath();
+            ctx.arc(340, 15, 3, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(350, 15, 3, 0, 2 * Math.PI);
+            ctx.fill();
+
+            downloadImage('vms-seatbelt.png');
+        }
+
+        function generatePhone() {
+            // 검은 배경
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, 400, 100);
+
+            // 금지 아이콘 (왼쪽)
+            ctx.strokeStyle = '#FF0000';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(50, 30, 20, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(30, 10);
+            ctx.lineTo(70, 50);
+            ctx.stroke();
+
+            // 휴대폰
+            ctx.fillStyle = '#FFD700';
+            ctx.fillRect(40, 20, 20, 30);
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(45, 25, 10, 15);
+
+            // 텍스트
+            ctx.fillStyle = '#FF5722';
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('운전중', 200, 30);
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillText('휴대폰', 200, 50);
+            ctx.fillStyle = '#FF0000';
+            ctx.fillText('사용금지', 200, 70);
+
+            downloadImage('vms-phone.png');
+        }
+
+        function generateDrowsy() {
+            // 검은 배경
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, 400, 100);
+
+            // 경고 아이콘 (왼쪽)
+            ctx.strokeStyle = '#FF0000';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(50, 30, 20, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // 졸음 표정
+            ctx.fillStyle = '#FFD700';
+            ctx.beginPath();
+            ctx.arc(50, 30, 15, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // 눈 (감은 상태)
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(42, 25);
+            ctx.lineTo(48, 28);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(52, 25);
+            ctx.lineTo(58, 28);
+            ctx.stroke();
+
+            // Z 표시
+            ctx.fillStyle = '#FF0000';
+            ctx.font = 'bold 16px Arial';
+            ctx.fillText('Z', 75, 25);
+            ctx.fillText('Z', 85, 35);
+
+            // 텍스트
+            ctx.fillStyle = '#FF9800';
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('졸음운전 주의', 200, 40);
+            ctx.fillStyle = '#4CAF50';
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('졸음쉼터 이용하세요', 200, 65);
+
+            downloadImage('vms-drowsy.png');
+        }
+
+        function generateInfo() {
+            // 검은 배경
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, 400, 100);
+
+            // 텍스트
+            ctx.fillStyle = '#4CAF50';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('구리포천 이용안내', 200, 40);
+            ctx.font = 'bold 18px Arial';
+            ctx.fillText('1977-1925', 200, 70);
+
+            downloadImage('vms-info.png');
+        }
+    </script>
+</body>
+</html>

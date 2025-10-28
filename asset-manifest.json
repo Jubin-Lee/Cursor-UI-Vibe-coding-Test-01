@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Cursor-UI-Vibe-coding-Test-01/static/css/main.e3123079.css",
-    "main.js": "/Cursor-UI-Vibe-coding-Test-01/static/js/main.b03ae187.js",
+    "main.css": "/Cursor-UI-Vibe-coding-Test-01/static/css/main.ba3d9cdb.css",
+    "main.js": "/Cursor-UI-Vibe-coding-Test-01/static/js/main.be4b7a83.js",
     "static/js/333.07817a74.chunk.js": "/Cursor-UI-Vibe-coding-Test-01/static/js/333.07817a74.chunk.js",
     "index.html": "/Cursor-UI-Vibe-coding-Test-01/index.html",
-    "main.e3123079.css.map": "/Cursor-UI-Vibe-coding-Test-01/static/css/main.e3123079.css.map",
-    "main.b03ae187.js.map": "/Cursor-UI-Vibe-coding-Test-01/static/js/main.b03ae187.js.map",
+    "main.ba3d9cdb.css.map": "/Cursor-UI-Vibe-coding-Test-01/static/css/main.ba3d9cdb.css.map",
+    "main.be4b7a83.js.map": "/Cursor-UI-Vibe-coding-Test-01/static/js/main.be4b7a83.js.map",
     "333.07817a74.chunk.js.map": "/Cursor-UI-Vibe-coding-Test-01/static/js/333.07817a74.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e3123079.css",
-    "static/js/main.b03ae187.js"
+    "static/css/main.ba3d9cdb.css",
+    "static/js/main.be4b7a83.js"
   ]
 }
