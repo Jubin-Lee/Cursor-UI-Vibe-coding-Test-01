@@ -19,6 +19,29 @@ const DataStatus = () => {
           </div>
         </div>
         
+        {/* 통계 정보 */}
+        <div className="status-section">
+          <h3>오늘의 통계</h3>
+          <div className="stats-grid">
+            <div className="stat-item">
+              <div className="stat-number">1,247</div>
+              <div className="stat-label">처리된 데이터 건수</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">98.5%</div>
+              <div className="stat-label">데이터 정확도</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">3</div>
+              <div className="stat-label">발생한 돌발상황</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">24</div>
+              <div className="stat-label">평균 응답시간(ms)</div>
+            </div>
+          </div>
+        </div>
+        
         {/* 데이터 수집 현황 */}
         <div className="status-section">
           <h3>데이터 수집 현황</h3>
@@ -80,29 +103,6 @@ const DataStatus = () => {
             <div className="system-item">
               <span className="system-label">지도 서비스</span>
               <span className="system-status-indicator online">정상</span>
-            </div>
-          </div>
-        </div>
-        
-        {/* 통계 정보 */}
-        <div className="status-section">
-          <h3>오늘의 통계</h3>
-          <div className="stats-grid">
-            <div className="stat-item">
-              <div className="stat-number">1,247</div>
-              <div className="stat-label">처리된 데이터 건수</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">98.5%</div>
-              <div className="stat-label">데이터 정확도</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">3</div>
-              <div className="stat-label">발생한 돌발상황</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">24</div>
-              <div className="stat-label">평균 응답시간(ms)</div>
             </div>
           </div>
         </div>

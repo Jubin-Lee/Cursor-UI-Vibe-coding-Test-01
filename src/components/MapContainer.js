@@ -437,9 +437,12 @@ const BRANCH = [
     }
   };
 
+
   // 교통 레이어 추가 함수
   const addTrafficLayers = async () => {
     try {
+      console.log('교통 레이어 추가 시작...');
+      
       // SHP 파일 로드 시도
       const shapefileData = await loadShapefile();
       
@@ -465,78 +468,88 @@ const BRANCH = [
         }
         
         // 기존 레이어들 제거 (새로운 데이터로 업데이트하기 위해)
-        const existingLayers = ['shapefile-main-up', 'shapefile-main-down', 'shapefile-branch-up', 'shapefile-branch-down'];
+        const existingLayers = ['shapefile-main', 'shapefile-branch', 'shapefile-main-up', 'shapefile-main-down', 'shapefile-branch-up', 'shapefile-branch-down'];
         existingLayers.forEach(layerId => {
           if (map.current.getLayer(layerId)) {
             map.current.removeLayer(layerId);
           }
         });
         
-        // 본선 라인 레이어 추가 (상/하행 통합)
+        // 본선 라인 레이어 추가
         console.log('shapefile-main 레이어 추가 중...');
-    map.current.addLayer({
-          id: 'shapefile-main',
-      type: 'line',
-          source: 'shapefile-source',
-          filter: ['==', ['get', 'route'], 'main'],
-          layout: {
-            'line-join': 'round',
-            'line-cap': 'round'
-          },
-      paint: {
-        'line-color': [
-          'case',
-              ['<', ['get', 'speed'], 40], '#e53935',  // 0-40km/h: 정체 (빨강)
-              ['<', ['get', 'speed'], 80], '#ffc107',  // 40-80km/h: 서행 (amber)
-              '#00ff00'  // 80+km/h: 원활 (초록)
-        ],
-        'line-width': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-              8, 6,    // 줌 레벨 8에서 6px
-              10, 8,   // 줌 레벨 10에서 8px
-              12, 12,  // 줌 레벨 12에서 12px
-              14, 16,  // 줌 레벨 14에서 16px
-              16, 20   // 줌 레벨 16에서 20px
-            ]
-          }
-        });
+        try {
+          map.current.addLayer({
+            id: 'shapefile-main',
+            type: 'line',
+            source: 'shapefile-source',
+            filter: ['==', ['get', 'route'], 'main'],
+            layout: {
+              'line-join': 'round',
+              'line-cap': 'round'
+            },
+            paint: {
+              'line-color': [
+                'case',
+                ['<', ['get', 'speed'], 40], '#e53935',  // 0-40km/h: 정체 (빨강)
+                ['<', ['get', 'speed'], 80], '#ffc107',  // 40-80km/h: 서행 (amber)
+                '#00ff00'  // 80+km/h: 원활 (초록)
+              ],
+              'line-width': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                8, 6,    // 줌 레벨 8에서 6px
+                10, 8,   // 줌 레벨 10에서 8px
+                12, 12,  // 줌 레벨 12에서 12px
+                14, 16,  // 줌 레벨 14에서 16px
+                16, 20   // 줌 레벨 16에서 20px
+              ]
+            }
+          });
+          console.log('본선 레이어 추가 완료');
+        } catch (error) {
+          console.error('본선 레이어 추가 실패:', error);
+        }
 
-        // 지선 라인 레이어 추가 (상/하행 통합)
+        // 지선 라인 레이어 추가
         console.log('shapefile-branch 레이어 추가 중...');
-    map.current.addLayer({
-          id: 'shapefile-branch',
-      type: 'line',
-          source: 'shapefile-source',
-          filter: ['==', ['get', 'route'], 'branch'],
-          layout: {
-            'line-join': 'round',
-            'line-cap': 'round'
-          },
-      paint: {
-        'line-color': [
-          'case',
-              ['<', ['get', 'speed'], 40], '#e53935',  // 0-40km/h: 정체 (빨강)
-              ['<', ['get', 'speed'], 80], '#ffc107',  // 40-80km/h: 서행 (amber)
-              '#00ff00'  // 80+km/h: 원활 (초록)
-        ],
-        'line-width': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-              8, 4,    // 줌 레벨 8에서 4px
-              10, 6,   // 줌 레벨 10에서 6px
-          12, 8,   // 줌 레벨 12에서 8px
-          14, 12,  // 줌 레벨 14에서 12px
-          16, 16   // 줌 레벨 16에서 16px
-            ]
-          }
-        });
+        try {
+          map.current.addLayer({
+            id: 'shapefile-branch',
+            type: 'line',
+            source: 'shapefile-source',
+            filter: ['==', ['get', 'route'], 'branch'],
+            layout: {
+              'line-join': 'round',
+              'line-cap': 'round'
+            },
+            paint: {
+              'line-color': [
+                'case',
+                ['<', ['get', 'speed'], 40], '#e53935',  // 0-40km/h: 정체 (빨강)
+                ['<', ['get', 'speed'], 80], '#ffc107',  // 40-80km/h: 서행 (amber)
+                '#00ff00'  // 80+km/h: 원활 (초록)
+              ],
+              'line-width': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                8, 4,    // 줌 레벨 8에서 4px
+                10, 6,   // 줌 레벨 10에서 6px
+                12, 8,   // 줌 레벨 12에서 8px
+                14, 12,  // 줌 레벨 14에서 12px
+                16, 16   // 줌 레벨 16에서 16px
+              ]
+            }
+          });
+          console.log('지선 레이어 추가 완료');
+        } catch (error) {
+          console.error('지선 레이어 추가 실패:', error);
+        }
 
-        console.log('SHP 라인 레이어 추가 완료 (2개 레이어 사용: 본선, 지선)');
+        console.log('라인 레이어 추가 완료 (2개 레이어 사용: 본선, 지선)');
         
-        // SHP 데이터의 범위로 지도 중심 및 줌 조정 (bounds 객체 사용하지 않음)
+        // 지도 범위 조정
         console.log('지도 범위 조정 중...');
         let validCoords = [];
         
@@ -596,7 +609,7 @@ const BRANCH = [
               zoom: zoom,
               duration: 1000
             });
-            console.log('지도 범위 조정 완료 (flyTo 사용)');
+            console.log('지도 범위 조정 완료');
             
           } catch (error) {
             console.error('지도 범위 조정 오류:', error);
@@ -616,7 +629,7 @@ const BRANCH = [
           });
         }
         
-        // IC 포인트 추가 (SHP 파일용)
+        // IC 포인트 추가
         setTimeout(() => {
           addICPointsForShapefile();
         }, 100);
@@ -624,10 +637,12 @@ const BRANCH = [
         // 라인 인터랙션 추가
         addLineInteractions();
         
-        return; // SHP 파일이 로드되면 여기서 종료
+        console.log('교통 레이어 추가 완료');
+        
+      } else {
+        console.log('SHP 파일 로드 실패, 기존 MOCK 데이터 사용');
       }
       
-      console.log('SHP 파일 로드 실패, 기존 MOCK 데이터 사용');
     } catch (error) {
       console.error('addTrafficLayers 오류:', error);
       console.log('MOCK 데이터로 대체');
