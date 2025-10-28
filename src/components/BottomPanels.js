@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './BottomPanels.css';
 import IncidentModal from './IncidentModal';
 import SpeedGauge from './SpeedGauge';
+import WeatherPanel from './WeatherPanel';
+import VMSMessage from './VMSMessage';
 
 const BottomPanels = ({ selectedSegment = null }) => {
   const [selectedIncident, setSelectedIncident] = useState(null);
@@ -165,41 +167,16 @@ const BottomPanels = ({ selectedSegment = null }) => {
       </div>
 
       <div className="panel">
-        <div className="panel-header">VMS/LCS</div>
+        <div className="panel-header">VMS/LCS 메시지</div>
         <div className="panel-body">
-          <div className="info-item">
-            <span className="info-label">VMS 작동:</span>
-            <span className="info-value">8/10</span>
-          </div>
-          <div className="info-item">
-            <span className="info-label">LCS 작동:</span>
-            <span className="info-value">6/8</span>
-          </div>
-          <div className="info-item">
-            <span className="info-label">메시지:</span>
-            <span className="info-value">3개</span>
-          </div>
-          <div className="info-item">
-            <span className="info-label">상태:</span>
-            <span className="info-value status-normal">정상</span>
-          </div>
+          <VMSMessage />
         </div>
       </div>
 
       <div className="panel">
         <div className="panel-header">날씨</div>
         <div className="panel-body">
-          <div className="weather-item">
-            <span className="weather-place">구리시</span>
-            <span className="weather-temp">21°C</span>
-          </div>
-          <div className="weather-item">
-            <span className="weather-place">포천시</span>
-            <span className="weather-temp">25°C</span>
-          </div>
-          <div className="weather-detail">
-            맑음, 바람 2-3m/s
-          </div>
+          <WeatherPanel />
         </div>
       </div>
       
